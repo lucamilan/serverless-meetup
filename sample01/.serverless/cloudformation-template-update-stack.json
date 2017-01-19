@@ -88,7 +88,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wolf-sample01/dev/1484760020741-2017-01-18T17:20:20.741Z/wolf-sample01.zip"
+          "S3Key": "serverless/wolf-sample01/dev/1484816360118-2017-01-19T08:59:20.118Z/wolf-sample01.zip"
         },
         "FunctionName": "wolf-sample01-dev-hello",
         "Handler": "handler.hello",
@@ -100,21 +100,22 @@
           ]
         },
         "Runtime": "nodejs4.3",
-        "Timeout": 6
+        "Timeout": 6,
+        "Description": "Hello wolf lambda!"
       },
       "DependsOn": [
         "IamPolicyLambdaExecution",
         "IamRoleLambdaExecution"
       ]
     },
-    "HelloLambdaVersionRaW0PBsVkGyusRaQkl0YcZeJ1yUBNhlu1zYcOArziE": {
+    "HelloLambdaVersionOFEnLoF90eUbONIFZfBdVLjHJjemtcei9wviTFYEnus": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "RaW0PBsVkGyusRaQkl0YcZeJ1yUB+Nhlu1zYcOArziE="
+        "CodeSha256": "OFEnLoF90eUbONIFZfBdVLjHJjemtcei9wviTFYEnus="
       }
     }
   },
@@ -136,7 +137,7 @@
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionRaW0PBsVkGyusRaQkl0YcZeJ1yUBNhlu1zYcOArziE"
+        "Ref": "HelloLambdaVersionOFEnLoF90eUbONIFZfBdVLjHJjemtcei9wviTFYEnus"
       }
     }
   }
