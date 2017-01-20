@@ -18,7 +18,7 @@ functions:
     handler: authorizer.check
     environment:
       AUTH0_CLIENT_ID: zSIkjbVKVgvROA7jQEfmolnjiWIf567Q
-      AUTH0_CLIENT_SECRET: uqj5uJG002cwxBaB3Z48WL9-vJsAL1t62viVU7Zn4mRUOYkU-9QoXB6YdIpC1ZbW
+      AUTH0_CLIENT_SECRET: rOJI4sOSWPe8wsYeCcLhPuQ3W4Nfcb1pFQYTeDN7pDmJr1d_M1f3qB5bkGNw25yQ
   hello:
     description: "${self:service} - Hello wolf lambda!"
     handler: handler.hello
