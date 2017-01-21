@@ -5,7 +5,7 @@ export default class Builder {
 
     async build() {
         return new Promise((resolve,reject)=>{
-            const result = ['<=====',...arguments, '=====>'].join(' ');
+            const result = [':',...arguments, ':'].join(' ');
             return resolve(result);
         });
     }
