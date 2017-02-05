@@ -1,4 +1,4 @@
-service: wolf-sample02
+service: wolf-sample03
 
 frameworkVersion: ">=1.2.0 <2.0.0"
 

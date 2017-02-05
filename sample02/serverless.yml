@@ -1,9 +1,6 @@
-service: wolf-sample04
+service: wolf-sample02
 
 frameworkVersion: ">=1.2.0 <2.0.0"
-
-plugins:
-  - serverless-webpack
 
 provider:
   name: aws
@@ -16,3 +13,7 @@ functions:
   hello:
     description: "Hello wolf lambda!"
     handler: handler.hello
+    events:
+      - http: 
+          path: hello
+          method: GET
