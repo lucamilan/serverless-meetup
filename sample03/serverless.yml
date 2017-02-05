@@ -1,0 +1,18 @@
+service: wolf-sample03
+
+frameworkVersion: ">=1.2.0 <2.0.0"
+
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: dev
+  region: eu-west-1
+  memorySize: 128
+
+functions:
+  hello:
+    description: "Hello wolf lambda!"
+    handler: handler.hello
