@@ -1,9 +1,9 @@
-service: wolf-sample03
+service: wolf-sample02
 
 frameworkVersion: ">=1.2.0 <2.0.0"
 
-plugins:
-  - serverless-webpack
+custom:
+  dbTable: "Wolf-Triggers"
 
 provider:
   name: aws
@@ -11,8 +11,58 @@ provider:
   stage: dev
   region: eu-west-1
   memorySize: 128
+  iamRoleStatements:
+   - Effect: Allow
+     Action:
+     - dynamodb:*
+     Resource:
+      - "arn:aws:dynamodb:*:*:table/${self:custom.dbTable}*"
+   - Effect: Allow
+     Action:
+      - dynamodb:*
+     Resource:
+      - "arn:aws:dynamodb:*:*:table/${self:custom.dbTable}*/stream/*"
 
 functions:
-  hello:
-    description: "Hello wolf lambda!"
-    handler: handler.hello
+  writer:
+    description: "Write some data on Wolf table"
+    handler: writer.write
+    environment:
+      DB_TABLE: ${self:custom.dbTable}    
+  listener:
+    description: "Listen changes on Wolf table"
+    handler: listener.listen
+
+resources:
+  Resources: 
+    WolfDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Delete
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: '${self:custom.dbTable}'
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
+    WolfDbTableEvent:
+      Type: AWS::Lambda::EventSourceMapping
+      Properties:
+        BatchSize: 1
+        EventSourceArn:
+          Fn::GetAtt:
+            - WolfDbTable
+            - StreamArn      
+        FunctionName:
+          Fn::GetAtt:
+            - ListenerLambdaFunction
+            - Arn
+        StartingPosition: TRIM_HORIZON

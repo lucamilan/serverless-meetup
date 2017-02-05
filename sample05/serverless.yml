@@ -14,7 +14,7 @@ provider:
 
 functions:
   auth:
-    description: "${self:service} - Hello wolf lambda!"
+    description: "${self:service} - Hello Wolf lambda!"
     handler: authorizer.check
     environment:
       AUTH0_CLIENT_ID: zSIkjbVKVgvROA7jQEfmolnjiWIf567Q
