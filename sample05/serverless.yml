@@ -1,0 +1,60 @@
+service: wolf-sample05 #authorize
+
+frameworkVersion: ">=1.2.0 <2.0.0"
+
+custom:
+  s3Bucket: wolf-web-app
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: dev
+  region: eu-west-1
+  memorySize: 128
+
+functions:
+  auth:
+    description: "${self:service} - Hello wolf lambda!"
+    handler: authorizer.check
+    environment:
+      AUTH0_CLIENT_ID: zSIkjbVKVgvROA7jQEfmolnjiWIf567Q
+      AUTH0_CLIENT_SECRET: rOJI4sOSWPe8wsYeCcLhPuQ3W4Nfcb1pFQYTeDN7pDmJr1d_M1f3qB5bkGNw25yQ
+  hello:
+    description: "${self:service} - Hello wolf lambda!"
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: GET
+          cors: true
+          ## Specifying the authorizer lambda
+          authorizer: 
+            name: auth
+            resultTtlInSeconds: 0
+
+resources:
+  Resources:
+    ## Specifying the S3 Bucket
+    WolfAppS3Bucket:
+      Type: AWS::S3::Bucket
+      DeletionPolicy: Delete
+      Properties:
+        BucketName: ${self:custom.s3Bucket}
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
+    ## Specifying the policies to make sure all files inside the Bucket are available
+    WolfAppS3BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: WolfAppS3Bucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action:
+              - s3:GetObject
+              Resource: arn:aws:s3:::${self:custom.s3Bucket}/*
