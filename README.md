@@ -8,7 +8,7 @@ How to deploy our first lambda.
 
 ## Sample 02 ##
 
-How to deploy our lambda function and expose it publicly through API Gateway.
+How to deploy our lambda function and expose it publicly as HTML through API Gateway.
 
 ## Sample 03 ##
 
