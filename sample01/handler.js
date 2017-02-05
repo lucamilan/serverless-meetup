@@ -2,6 +2,6 @@
 
 module.exports.hello = (event, context, callback) => {
 
-  callback("Hello Wolf!");
+  callback(null, "Hello Wolf!");
   
 };

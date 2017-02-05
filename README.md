@@ -10,6 +10,10 @@ How to deploy our first lambda.
 
 How to setup and work with a DynamoDB stream.
 
-# Sample 03 #
+## Sample 03 ##
 
 How to use a severless pluging in order to build a project with webpack. 
+
+## Sample 05 ##
+
+How to use Auth0 and authorizer API Gateway feature to secure a severless app. 
