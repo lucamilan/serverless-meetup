@@ -1,9 +1,11 @@
 'use strict';
 
-module.exports.hello = (event, context, callback) => {
+const uuid = require('uuid');
 
+module.exports.couponizer = (event, context, callback) => {
   const payload = {
-    message: 'Your principalId is ' + event.requestContext.authorizer.principalId
+    principalId: event.requestContext.authorizer.principalId,
+    code: uuid.v4().split('-')[0]
   };
 
   callback(null, response(payload));

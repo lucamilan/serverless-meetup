@@ -5,6 +5,7 @@ window.addEventListener('load', function () {
   // buttons
   var btn_login = document.getElementById('btn-login');
   var btn_logout = document.getElementById('btn-logout');
+  var div_body = document.getElementById('div-body');
   // message
   var remote_message = document.getElementById('remote-message');
 
@@ -36,7 +37,8 @@ window.addEventListener('load', function () {
     if (id_token) {
       lock.getProfile(id_token, function (err, profile) {
         if (err) {
-          return alert('There was an error getting the profile: ' + err.message);
+          localStorage.removeItem('id_token');
+          return;
         }
         // Display user information
         show_profile_info(profile);
@@ -54,6 +56,7 @@ window.addEventListener('load', function () {
     avatar.style.display = "block";
     btn_logout.style.display = "block";
     remote_message.style.display = "block";
+    div_body.style.display = "block";
   };
 
   var logout = function () {
@@ -68,7 +71,7 @@ window.addEventListener('load', function () {
       contentType: "application/json; charset=UTF-8"
     };
     return $.ajax(params).then(function (data, textStatus, jqXHR) {
-      remote_message.innerText = data.message;
+      remote_message.innerText = 'Il codice da usare è: ' + data.code;
     }, function () {
       alert("Houston we have a problem!");
     });

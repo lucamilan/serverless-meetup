@@ -4,20 +4,130 @@
 <head>
   <title>Wolf Meetup</title>
   <meta charset="utf-8">
-  <!-- Auth0 lock script -->
-  <script src="//cdn.auth0.com/js/lock/10.3.0/lock.min.js"></script>
-  <script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+    <!-- Auth0 lock script -->
+    <script src="//cdn.auth0.com/js/lock/10.3.0/lock.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="auth0-variables.js"></script>
     <script src="app.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      /* Space out content a bit */
+      
+      body {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      /* Everything but the jumbotron gets side spacing for mobile first views */
+      
+      .header,
+      .marketing,
+      .footer {
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
+      /* Custom page header */
+      
+      .header {
+        padding-bottom: 1rem;
+        border-bottom: .05rem solid #e5e5e5;
+      }
+      /* Make the masthead heading the same height as the navigation */
+      
+      .header h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 3rem;
+      }
+      /* Custom page footer */
+      
+      .footer {
+        padding-top: 1.5rem;
+        color: #777;
+        border-top: .05rem solid #e5e5e5;
+      }
+      /* Customize container */
+      
+      @media (min-width: 48em) {
+        .container {
+          max-width: 46rem;
+        }
+      }
+      
+      .container-narrow>hr {
+        margin: 2rem 0;
+      }
+      /* Main marketing message and sign up button */
+      
+      .jumbotron {
+        text-align: center;
+        border-bottom: .05rem solid #e5e5e5;
+      }
+      
+      .jumbotron .btn {
+        padding: .75rem 1.5rem;
+        font-size: 1.5rem;
+      }
+      /* Supporting marketing content */
+      
+      .marketing {
+        margin: 3rem 0;
+      }
+      
+      .marketing p+h4 {
+        margin-top: 1.5rem;
+      }
+      /* Responsive: Portrait tablets and up */
+      
+      @media screen and (min-width: 48em) {
+        /* Remove the padding we set earlier */
+        .header,
+        .marketing,
+        .footer {
+          padding-right: 0;
+          padding-left: 0;
+        }
+        /* Space out the masthead */
+        .header {
+          margin-bottom: 2rem;
+        }
+        /* Remove the bottom border on the jumbotron for visual effect */
+        .jumbotron {
+          border-bottom: 0;
+        }
+      }
+      
+      img.resize {
+        width: 200px;
+        /* you can use % */
+        height: auto;
+      }
+    </style>
 </head>
 
 <body>
-  <img alt="avatar" id="avatar" style="display:none;">
-  <p>Welcome <span id="nickname"></span></p>
-  <h3 id="remote-message" style="display:none;"></h3>
-  <button type="submit" id="btn-login">Sign In</button>
-  <button type="submit" id="btn-logout" style="display:none;">Sign Out</button>
+  <!--<h3 id="remote-message" style="display:none;"></h3>-->
+  <!--<button type="submit" id="btn-login">Sign In For Get a Beer 50% off</button>-->
+  <!--<button type="submit" id="btn-logout" style="display:none;">Sign Out</button>-->
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-3">Get your Beer!</h1>
+      <p class="lead"> Questa fantastica app ti da diritto ad un coupon per "farti una bionda" alla saluta del mitico Alle!</p>
+      <p><a id="btn-login" class="btn btn-lg btn-success" href="#" role="button">Accedi Ora</a></p>
+      <p><a id="btn-logout" class="btn btn-lg btn-success" href="#" role="button" style="display:none;">Esci</a></p>
+    </div>
+    <div class="row marketing" id="div-body" style="display:none;">
+      <div class="col-lg-12">
+        <h4>Ciao, bentornato <span id="nickname"></span></h4>
+        <h2 class="lead" id="remote-message"></h2>
+        <img alt="avatar" id="avatar" class="resize">
+      </div>
+    </div>
+    <footer class="footer">
+      <p>&copy; Company 2017</p>
+    </footer>
+  </div>
 </body>
 
 </html>

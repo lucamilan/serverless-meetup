@@ -1,6 +1,6 @@
 service: wolf-sample05 #authorize
 
-frameworkVersion: ">=1.2.0 <2.0.0"
+frameworkVersion: ">=1.5.0 <2.0.0"
 
 custom:
   s3Bucket: wolf-web-app
@@ -14,17 +14,17 @@ provider:
 
 functions:
   auth:
-    description: "${self:service} - Hello Wolf lambda!"
+    description: Auth0 authorizer func
     handler: authorizer.check
     environment:
       AUTH0_CLIENT_ID: zSIkjbVKVgvROA7jQEfmolnjiWIf567Q
       AUTH0_CLIENT_SECRET: rOJI4sOSWPe8wsYeCcLhPuQ3W4Nfcb1pFQYTeDN7pDmJr1d_M1f3qB5bkGNw25yQ
-  hello:
-    description: "${self:service} - Hello wolf lambda!"
-    handler: handler.hello
+  couponizer:
+    description: get a discount for a beer
+    handler: handler.couponizer
     events:
       - http:
-          path: hello
+          path: couponizer
           method: GET
           cors: true
           ## Specifying the authorizer lambda
