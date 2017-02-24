@@ -5,7 +5,7 @@ export const hello = async(event, context, callback) => {
   let message = '';
 
   try {    
-    const part1 = await concat.immediate('Hello', 'Wolf');
+    const part1 = await concat.delayed('Hello', 'Wolf');
     const part2 = await concat.immediate('Welcome', 'Serverless');
     message = await concat.delayed(part1, 'and', part2);
   } catch (error) {

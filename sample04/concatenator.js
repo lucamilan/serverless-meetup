@@ -6,14 +6,18 @@ export default class Concatenator {
     async delayed() {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(this._concatCore(...arguments));
+                const result = this._concatCore(...arguments);
+                console.log(result);
+                resolve(result);
             }, 5000);
         });
     }
 
     async immediate() {
         return new Promise((resolve, reject) => {
-            resolve(this._concatCore(...arguments));
+            const result = this._concatCore(...arguments);
+            console.log(result);
+            resolve(result);
         });
     }
 
