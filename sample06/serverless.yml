@@ -1,0 +1,36 @@
+service: wolf-sample06
+
+frameworkVersion: ">=1.2.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: dev
+  region: eu-west-1
+  memorySize: 128
+
+plugins:
+  - serverless-plugin-simulate
+
+functions:
+  bye:
+    description: "Hello wolf lambda!"
+    handler: handler.bye
+    events:
+    - http: 
+        path: bye
+        method: GET
+  hello:
+    description: "Hello wolf lambda!"
+    handler: handler.hello
+    events:
+      - http: 
+          path: hello
+          method: GET
+  generic:
+    description: "Hello wolf lambda!"
+    handler: handler.generic
+    events:
+      - http: 
+          path: generic/{proxy+}
+          method: GET
